@@ -1,0 +1,78 @@
+    create table attendance (
+       id integer not null auto_increment,
+        check_in varchar(255),
+        check_out varchar(255),
+        date date,
+        status varchar(255),
+        employee_id integer,
+        primary key (id)
+    ) engine=InnoDB
+
+    create table employee (
+       employee_id integer not null auto_increment,
+        category varchar(255),
+        gender varchar(255),
+        mail_id varchar(255),
+        employee_name varchar(255),
+        role varchar(255),
+        primary key (employee_id)
+    ) engine=InnoDB
+    
+    create table leaves (
+       id integer not null auto_increment,
+        end_date date,
+        leave_type varchar(255),
+        reason varchar(255),
+        start_date date,
+        employee_id integer,
+        primary key (id)
+    ) engine=InnoDB
+    
+    create table salary (
+       id integer not null auto_increment,
+        amount varchar(255),
+        salary_credited_date date,
+        employee_id integer,
+        primary key (id)
+    ) engine=InnoDB 
+    
+    create table todo (
+       id integer not null auto_increment,
+        date_assigned date,
+        is_work_assigned varchar(255),
+        work_description varchar(255),
+        employee_id integer,
+        primary key (id)
+    ) engine=InnoDB
+    
+    create table user (
+       id integer not null auto_increment,
+        password varchar(255),
+        employee_id integer,
+        primary key (id)
+    ) engine=InnoDB 
+    
+    alter table attendance 
+       add constraint FKr7q0h8jfngkyybll6o9r3h9ua 
+       foreign key (employee_id) 
+       references employee (employee_id) 
+    
+    alter table leaves 
+       add constraint FKoyaicpcjhq2kad5vgtlexcjjo 
+       foreign key (employee_id) 
+       references employee (employee_id)
+    
+    alter table salary 
+       add constraint FKnlnv3jbyvbiu8ci59r3btlk00 
+       foreign key (employee_id) 
+       references employee (employee_id)
+    
+    alter table todo 
+       add constraint FKbllt7y768v6d0rvir33scipxc 
+       foreign key (employee_id) 
+       references employee (employee_id)
+    
+    alter table user 
+       add constraint FK211dk0pe7l3aibwce8yy61ota 
+       foreign key (employee_id) 
+       references employee (employee_id)
